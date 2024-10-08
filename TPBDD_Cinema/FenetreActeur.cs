@@ -15,8 +15,8 @@ namespace TPBDD_Cinema
         public FenetreActeur()
         {
             InitializeComponent();
-            this.MaximizeBox= false;
-            this.MinimizeBox= false;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void FenetreActeur_Load(object sender, EventArgs e)
@@ -30,6 +30,11 @@ namespace TPBDD_Cinema
         }
 
         private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
