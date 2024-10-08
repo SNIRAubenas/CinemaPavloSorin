@@ -33,7 +33,7 @@ public partial class DirectorfilmactorContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb4_unicode_ci")
+            .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Actor>(entity =>
@@ -60,7 +60,7 @@ public partial class DirectorfilmactorContext : DbContext
 
             entity.ToTable("film");
 
-            entity.Property(e => e.Lenght).HasColumnType("time");
+            entity.Property(e => e.Length).HasColumnType("time");
             entity.Property(e => e.Poster).HasColumnType("mediumblob");
             entity.Property(e => e.Summary).HasColumnType("text");
             entity.Property(e => e.Title).HasMaxLength(50);
@@ -74,17 +74,20 @@ public partial class DirectorfilmactorContext : DbContext
 
             entity.HasIndex(e => e.IdActor, "IdActor");
 
-            entity.HasIndex(e => e.IdFilm, "IdFilm");
+            entity.HasIndex(e => e.IdFilm, "idFilm");
+
+            entity.Property(e => e.IdActor).HasColumnName("idActor");
+            entity.Property(e => e.IdFilm).HasColumnName("idFilm");
 
             entity.HasOne(d => d.IdActorNavigation).WithMany(p => p.Filmactors)
                 .HasForeignKey(d => d.IdActor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("filmactor_ibfk_2");
+                .HasConstraintName("filmactor_ibfk_1");
 
             entity.HasOne(d => d.IdFilmNavigation).WithMany(p => p.Filmactors)
                 .HasForeignKey(d => d.IdFilm)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("filmactor_ibfk_1");
+                .HasConstraintName("filmactor_ibfk_2");
         });
 
         modelBuilder.Entity<Filmdirector>(entity =>
@@ -93,9 +96,12 @@ public partial class DirectorfilmactorContext : DbContext
 
             entity.ToTable("filmdirector");
 
-            entity.HasIndex(e => e.IdDirector, "IdDirector");
+            entity.HasIndex(e => e.IdDirector, "idDirector");
 
-            entity.HasIndex(e => e.IdFilm, "IdFilm");
+            entity.HasIndex(e => e.IdFilm, "idFilm");
+
+            entity.Property(e => e.IdDirector).HasColumnName("idDirector");
+            entity.Property(e => e.IdFilm).HasColumnName("idFilm");
 
             entity.HasOne(d => d.IdDirectorNavigation).WithMany(p => p.Filmdirectors)
                 .HasForeignKey(d => d.IdDirector)
