@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPBDD_Cinema", "TPBDD_Cinema\TPBDD_Cinema.csproj", "{1A6F45BC-1C32-43ED-8C12-7ED54A3CD0EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A6F45BC-1C32-43ED-8C12-7ED54A3CD0EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6F45BC-1C32-43ED-8C12-7ED54A3CD0EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6F45BC-1C32-43ED-8C12-7ED54A3CD0EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6F45BC-1C32-43ED-8C12-7ED54A3CD0EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8D6E86F-94F1-42AF-9133-E3AA1991DD6A}
+	EndGlobalSection
+EndGlobal
