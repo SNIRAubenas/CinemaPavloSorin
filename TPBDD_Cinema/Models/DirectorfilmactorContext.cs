@@ -40,41 +40,57 @@ public partial class DirectorfilmactorContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("actor");
+            entity
+                .ToTable("actor")
+                .UseCollation("utf8mb4_unicode_ci");
 
-            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .UseCollation("utf8mb4_0900_ai_ci");
         });
 
         modelBuilder.Entity<Director>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("director");
+            entity
+                .ToTable("director")
+                .UseCollation("utf8mb4_unicode_ci");
 
-            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .UseCollation("utf8mb4_0900_ai_ci");
         });
 
         modelBuilder.Entity<Film>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("film");
+            entity
+                .ToTable("film")
+                .UseCollation("utf8mb4_unicode_ci");
 
             entity.Property(e => e.Length).HasColumnType("time");
             entity.Property(e => e.Poster).HasColumnType("mediumblob");
-            entity.Property(e => e.Summary).HasColumnType("text");
-            entity.Property(e => e.Title).HasMaxLength(50);
+            entity.Property(e => e.Summary)
+                .HasColumnType("text")
+                .UseCollation("utf8mb4_0900_ai_ci");
+            entity.Property(e => e.Title)
+                .HasMaxLength(50)
+                .UseCollation("utf8mb4_0900_ai_ci");
         });
 
         modelBuilder.Entity<Filmactor>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("filmactor");
+            entity
+                .ToTable("filmactor")
+                .UseCollation("utf8mb4_unicode_ci");
 
             entity.HasIndex(e => e.IdActor, "IdActor");
 
-            entity.HasIndex(e => e.IdFilm, "idFilm");
+            entity.HasIndex(e => e.IdFilm, "IdFilm");
 
             entity.Property(e => e.IdActor).HasColumnName("idActor");
             entity.Property(e => e.IdFilm).HasColumnName("idFilm");
@@ -82,23 +98,25 @@ public partial class DirectorfilmactorContext : DbContext
             entity.HasOne(d => d.IdActorNavigation).WithMany(p => p.Filmactors)
                 .HasForeignKey(d => d.IdActor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("filmactor_ibfk_1");
+                .HasConstraintName("filmactor_ibfk_2");
 
             entity.HasOne(d => d.IdFilmNavigation).WithMany(p => p.Filmactors)
                 .HasForeignKey(d => d.IdFilm)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("filmactor_ibfk_2");
+                .HasConstraintName("filmactor_ibfk_1");
         });
 
         modelBuilder.Entity<Filmdirector>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("filmdirector");
+            entity
+                .ToTable("filmdirector")
+                .UseCollation("utf8mb4_unicode_ci");
 
-            entity.HasIndex(e => e.IdDirector, "idDirector");
+            entity.HasIndex(e => e.IdDirector, "IdDirector");
 
-            entity.HasIndex(e => e.IdFilm, "idFilm");
+            entity.HasIndex(e => e.IdFilm, "IdFilm");
 
             entity.Property(e => e.IdDirector).HasColumnName("idDirector");
             entity.Property(e => e.IdFilm).HasColumnName("idFilm");
