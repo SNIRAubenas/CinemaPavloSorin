@@ -41,6 +41,9 @@
             labelNom = new Label();
             okModifier = new Button();
             ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
+            actorBindingSource = new BindingSource(components);
+            textBox2 = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -133,6 +136,18 @@
             // 
             // okModifier
             // 
+            // actorBindingSource
+            // 
+            actorBindingSource.DataSource = typeof(Models.Actor);
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(202, 66);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 23);
+            textBox2.TabIndex = 5;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
             okModifier.Location = new Point(186, 391);
             okModifier.Name = "okModifier";
             okModifier.Size = new Size(75, 23);
@@ -150,6 +165,9 @@
             Controls.Add(labelNom);
             Controls.Add(textBoxNom);
             Controls.Add(tableActeurs);
+            ClientSize = new Size(800, 450);
+            Controls.Add(textBox2);
+            Controls.Add(dataGridView1);
             Controls.Add(Supprimer);
             Controls.Add(Modifier);
             Controls.Add(Ajouter);
@@ -173,6 +191,8 @@
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
+        private BindingSource actorBindingSource;
+        private TextBox textBox2;
         private TextBox textBoxNom;
         private Label labelNom;
         private Button okModifier;
