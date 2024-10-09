@@ -9,17 +9,20 @@ namespace TPBDD_Cinema
 
         private void GestionActors_Click(object sender, EventArgs e)
         {
-            
+            FenetreActeur fenetreActeur = new FenetreActeur();
+            fenetreActeur.ShowDialog();
         }
 
         private void GestionFilms_Click(object sender, EventArgs e)
         {
-
+            FenetreFilms fenetreFilms = new FenetreFilms();
+            fenetreFilms.ShowDialog();
         }
 
         private void GestionDirectors_Click(object sender, EventArgs e)
         {
-
+            FenetreDirecteur fenetreDirecteur = new FenetreDirecteur();
+            fenetreDirecteur.ShowDialog();
         }
     }
 }
