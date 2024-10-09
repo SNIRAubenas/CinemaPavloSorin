@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPBDD_Cinema.Models;
 
@@ -29,7 +23,6 @@ namespace TPBDD_Cinema
             this.okModifier.Visible = false;
         }
 
-
         private void FenetreActeur_Load(object sender, EventArgs e)
         {
             dbContext = new DirectorfilmactorContext();
@@ -44,6 +37,13 @@ namespace TPBDD_Cinema
             }
 
             textBox2.Text = "Entrer ici le nom de l'acteur";
+
+            
+            if (tableActeurs.Rows.Count > 0)
+            {
+                tableActeurs.Rows[0].Selected = true; 
+                tableActeurs_CellClick(null, new DataGridViewCellEventArgs(0, 0));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -55,7 +55,6 @@ namespace TPBDD_Cinema
                 return;
             }
 
-
             using (var context = new DirectorfilmactorContext())
             {
                 var acteur = new Actor
@@ -63,15 +62,14 @@ namespace TPBDD_Cinema
                     Name = nom,
                 };
 
-
                 context.Actors.Add(acteur);
 
                 try
                 {
                     context.SaveChanges();
                     MessageBox.Show("Acteur ajouté avec succès.");
-
                     textBox2.Clear();
+                    ReloadActors();
                 }
                 catch (Exception ex)
                 {
@@ -82,15 +80,45 @@ namespace TPBDD_Cinema
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //methode supprimer
+            if (tableActeurs.SelectedRows.Count > 0)
+            {
+                DialogResult resultat = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet acteur ?",
+                                                "Confirmation de suppression",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Warning);
+                if (resultat == DialogResult.Yes)
+                {
+                    int actorId = (int)tableActeurs.SelectedRows[0].Cells[0].Value;
+
+                    var acteurASupprimer = dbContext.Actors.Find(actorId);
+                    if (acteurASupprimer != null)
+                    {
+                        dbContext.Actors.Remove(acteurASupprimer);
+
+                        try
+                        {
+                            dbContext.SaveChanges();
+                            MessageBox.Show("Acteur supprimé avec succès.");
+                            ReloadActors();
+                            this.Modifier.Enabled = false;
+                            this.Supprimer.Enabled = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erreur lors de la suppression de l'acteur : " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Acteur non trouvé.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un acteur à supprimer.");
+            }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //modification bouton
-
-        }
-
 
         private void Modifier_Click(object sender, EventArgs e)
         {
@@ -107,34 +135,38 @@ namespace TPBDD_Cinema
             if (actorAModifier != null)
             {
                 actorAModifier.Name = nouveauNom;
-                dbContext.SaveChanges();
-                dbContext.Actors.Load();
-                tableActeurs.SelectedRows[0].Selected = false;
+                try
+                {
+                    dbContext.SaveChanges();
+                    MessageBox.Show("Acteur modifié avec succès.");
+                    ReloadActors();
+                    tableActeurs.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la modification de l'acteur : " + ex.Message);
+                }
             }
         }
 
         private void textBoxNom_TextChanged(object sender, EventArgs e)
         {
-            if (this.textBoxNom.Text.Length > 0)
-            {
-                this.okModifier.Enabled = true;
-            }
-        }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            string textesaisie = textBox2.Text;
-            if (string.IsNullOrEmpty(textesaisie))
-            {
-                MessageBox.Show("Vous avez saisi" + textesaisie);
-
-
-            }
+            this.okModifier.Enabled = !string.IsNullOrEmpty(this.textBoxNom.Text); 
         }
 
         private void tableActeurs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Modifier.Enabled = true;
-            this.Supprimer.Enabled = true;
+            if (e.RowIndex >= 0)
+            {
+                this.Modifier.Enabled = true; 
+                this.Supprimer.Enabled = true; 
+            }
+        }
+
+        private void ReloadActors()
+        {
+            dbContext.Actors.Load();
+            actorBindingSource.DataSource = dbContext.Actors.Local.ToBindingList(); // Maj la table
         }
     }
 }

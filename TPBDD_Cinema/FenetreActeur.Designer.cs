@@ -44,7 +44,7 @@ namespace TPBDD_Cinema
             textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
             Valider = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -150,7 +150,7 @@ namespace TPBDD_Cinema
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(201, 23);
             textBox2.TabIndex = 5;
-            textBox2.TextChanged += textBox2_TextChanged;
+            
             // 
             // Valider
             // 
