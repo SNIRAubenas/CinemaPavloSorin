@@ -45,7 +45,7 @@ namespace TPBDD_Cinema
             ajouterLabel = new Label();
             ajouterActeurButton = new Button();
             ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
-            Valider = new Button();
+            
             
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();

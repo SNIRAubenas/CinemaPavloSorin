@@ -69,7 +69,7 @@ namespace TPBDD_Cinema
                         {
                             dbContext.SaveChanges();
                             MessageBox.Show("Acteur supprimé avec succès.");
-                            ReloadActors();
+                           
                             this.Modifier.Enabled = false;
                             this.Supprimer.Enabled = false;
                         }
