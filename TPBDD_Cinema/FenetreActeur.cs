@@ -110,7 +110,7 @@ namespace TPBDD_Cinema
                 {
                     dbContext.SaveChanges();
                     MessageBox.Show("Acteur modifié avec succès.");
-                    ReloadActors();
+                    
                     tableActeurs.ClearSelection();
                 }
                 catch (Exception ex)
