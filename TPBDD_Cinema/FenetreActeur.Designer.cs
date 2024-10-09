@@ -32,18 +32,21 @@
             Ajouter = new Button();
             Modifier = new Button();
             Supprimer = new Button();
-            dataGridView1 = new DataGridView();
-            actorBindingSource = new BindingSource(components);
+            tableActeurs = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             filmactorsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            actorBindingSource = new BindingSource(components);
+            textBoxNom = new TextBox();
+            labelNom = new Label();
+            okModifier = new Button();
+            ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
             // 
             // Ajouter
             // 
-            Ajouter.Location = new Point(690, 41);
+            Ajouter.Location = new Point(54, 269);
             Ajouter.Name = "Ajouter";
             Ajouter.Size = new Size(75, 23);
             Ajouter.TabIndex = 0;
@@ -53,16 +56,17 @@
             // 
             // Modifier
             // 
-            Modifier.Location = new Point(690, 97);
+            Modifier.Location = new Point(186, 269);
             Modifier.Name = "Modifier";
             Modifier.Size = new Size(75, 23);
             Modifier.TabIndex = 1;
             Modifier.Text = "Modifier";
             Modifier.UseVisualStyleBackColor = true;
+            Modifier.Click += Modifier_Click;
             // 
             // Supprimer
             // 
-            Supprimer.Location = new Point(690, 197);
+            Supprimer.Location = new Point(310, 269);
             Supprimer.Name = "Supprimer";
             Supprimer.Size = new Size(75, 23);
             Supprimer.TabIndex = 2;
@@ -70,46 +74,82 @@
             Supprimer.UseVisualStyleBackColor = true;
             Supprimer.Click += button3_Click;
             // 
-            // dataGridView1
+            // tableActeurs
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, filmactorsDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = actorBindingSource;
-            dataGridView1.Location = new Point(61, 41);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(512, 228);
-            dataGridView1.TabIndex = 3;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // actorBindingSource
-            // 
-            actorBindingSource.DataSource = typeof(Models.Actor);
+            tableActeurs.AutoGenerateColumns = false;
+            tableActeurs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tableActeurs.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, filmactorsDataGridViewTextBoxColumn });
+            tableActeurs.DataSource = actorBindingSource;
+            tableActeurs.Location = new Point(54, 12);
+            tableActeurs.Name = "tableActeurs";
+            tableActeurs.ReadOnly = true;
+            tableActeurs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tableActeurs.Size = new Size(344, 228);
+            tableActeurs.TabIndex = 3;
+            tableActeurs.CellClick += tableActeurs_CellClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             idDataGridViewTextBoxColumn.HeaderText = "Id";
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             nameDataGridViewTextBoxColumn.HeaderText = "Name";
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // filmactorsDataGridViewTextBoxColumn
             // 
             filmactorsDataGridViewTextBoxColumn.DataPropertyName = "Filmactors";
             filmactorsDataGridViewTextBoxColumn.HeaderText = "Filmactors";
             filmactorsDataGridViewTextBoxColumn.Name = "filmactorsDataGridViewTextBoxColumn";
+            filmactorsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // actorBindingSource
+            // 
+            actorBindingSource.DataSource = typeof(Models.Actor);
+            // 
+            // textBoxNom
+            // 
+            textBoxNom.Location = new Point(234, 341);
+            textBoxNom.Name = "textBoxNom";
+            textBoxNom.Size = new Size(194, 23);
+            textBoxNom.TabIndex = 4;
+            textBoxNom.TextChanged += textBoxNom_TextChanged;
+            // 
+            // labelNom
+            // 
+            labelNom.AutoSize = true;
+            labelNom.Location = new Point(42, 344);
+            labelNom.Name = "labelNom";
+            labelNom.Size = new Size(174, 15);
+            labelNom.TabIndex = 5;
+            labelNom.Text = "Entrez le nouveau nom d'acteur";
+            // 
+            // okModifier
+            // 
+            okModifier.Location = new Point(186, 391);
+            okModifier.Name = "okModifier";
+            okModifier.Size = new Size(75, 23);
+            okModifier.TabIndex = 6;
+            okModifier.Text = "OK";
+            okModifier.UseVisualStyleBackColor = true;
+            okModifier.Click += okModifier_Click;
             // 
             // FenetreActeur
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(524, 542);
+            Controls.Add(okModifier);
+            Controls.Add(labelNom);
+            Controls.Add(textBoxNom);
+            Controls.Add(tableActeurs);
             Controls.Add(Supprimer);
             Controls.Add(Modifier);
             Controls.Add(Ajouter);
@@ -117,9 +157,10 @@
             Name = "FenetreActeur";
             Text = "FenetreActeur";
             Load += FenetreActeur_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tableActeurs).EndInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -127,10 +168,13 @@
         private Button Ajouter;
         private Button Modifier;
         private Button Supprimer;
-        private DataGridView dataGridView1;
+        private DataGridView tableActeurs;
+        private BindingSource actorBindingSource;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
-        private BindingSource actorBindingSource;
+        private TextBox textBoxNom;
+        private Label labelNom;
+        private Button okModifier;
     }
 }
