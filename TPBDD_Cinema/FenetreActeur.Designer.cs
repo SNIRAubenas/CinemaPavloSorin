@@ -40,10 +40,8 @@
             textBoxNom = new TextBox();
             labelNom = new Label();
             okModifier = new Button();
-            ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
-            actorBindingSource = new BindingSource(components);
             textBox2 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -83,13 +81,12 @@
             tableActeurs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableActeurs.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, filmactorsDataGridViewTextBoxColumn });
             tableActeurs.DataSource = actorBindingSource;
-            tableActeurs.Location = new Point(54, 12);
+            tableActeurs.Location = new Point(41, 12);
             tableActeurs.Name = "tableActeurs";
             tableActeurs.ReadOnly = true;
             tableActeurs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tableActeurs.Size = new Size(344, 228);
             tableActeurs.TabIndex = 3;
-            tableActeurs.CellClick += tableActeurs_CellClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -136,18 +133,6 @@
             // 
             // okModifier
             // 
-            // actorBindingSource
-            // 
-            actorBindingSource.DataSource = typeof(Models.Actor);
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(202, 66);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 5;
-            textBox2.TextChanged += textBox2_TextChanged;
-            // 
             okModifier.Location = new Point(186, 391);
             okModifier.Name = "okModifier";
             okModifier.Size = new Size(75, 23);
@@ -156,18 +141,24 @@
             okModifier.UseVisualStyleBackColor = true;
             okModifier.Click += okModifier_Click;
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(473, 344);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(201, 23);
+            textBox2.TabIndex = 5;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
             // FenetreActeur
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 542);
+            ClientSize = new Size(800, 450);
             Controls.Add(okModifier);
             Controls.Add(labelNom);
             Controls.Add(textBoxNom);
             Controls.Add(tableActeurs);
-            ClientSize = new Size(800, 450);
             Controls.Add(textBox2);
-            Controls.Add(dataGridView1);
             Controls.Add(Supprimer);
             Controls.Add(Modifier);
             Controls.Add(Ajouter);
@@ -191,7 +182,6 @@
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
-        private BindingSource actorBindingSource;
         private TextBox textBox2;
         private TextBox textBoxNom;
         private Label labelNom;

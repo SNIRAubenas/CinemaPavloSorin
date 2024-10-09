@@ -42,7 +42,7 @@ namespace TPBDD_Cinema
             {
                 MessageBox.Show($"Erreur de chargement de la base de donnée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
             textBox2.Text = "Entrer ici le nom de l'acteur";
         }
 
@@ -52,18 +52,18 @@ namespace TPBDD_Cinema
             if (string.IsNullOrEmpty(nom) || nom == "Entrer ici le nom de l'acteur")
             {
                 MessageBox.Show("Veuillez entrer un nom d'acteur.");
-                return; 
+                return;
             }
 
-            
-            using (var context = new DirectorfilmactorContext()) 
+
+            using (var context = new DirectorfilmactorContext())
             {
                 var acteur = new Actor
                 {
-                    Name = nom, 
+                    Name = nom,
                 };
 
-                
+
                 context.Actors.Add(acteur);
 
                 try
@@ -122,13 +122,14 @@ namespace TPBDD_Cinema
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            string textesaisie=textBox2.Text;
-            if (string.IsNullOrEmpty(textesaisie) )
+            string textesaisie = textBox2.Text;
+            if (string.IsNullOrEmpty(textesaisie))
             {
                 MessageBox.Show("Vous avez saisi" + textesaisie);
 
 
             }
+        }
 
         private void tableActeurs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
