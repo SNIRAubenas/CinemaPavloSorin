@@ -1,4 +1,5 @@
-﻿namespace TPBDD_Cinema
+﻿
+namespace TPBDD_Cinema
 {
     partial class FenetreActeur
     {
@@ -38,6 +39,7 @@
             filmactorsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             actorBindingSource = new BindingSource(components);
             textBox2 = new TextBox();
+            Valider = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
@@ -107,17 +109,28 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(202, 66);
+            textBox2.Location = new Point(203, 66);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 5;
             textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // Valider
+            // 
+            Valider.Location = new Point(690, 300);
+            Valider.Name = "Valider";
+            Valider.Size = new Size(75, 23);
+            Valider.TabIndex = 6;
+            Valider.Text = "Valider";
+            Valider.UseVisualStyleBackColor = true;
+            Valider.Click += button1_Click_1;
             // 
             // FenetreActeur
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Valider);
             Controls.Add(textBox2);
             Controls.Add(dataGridView1);
             Controls.Add(Supprimer);
@@ -133,6 +146,11 @@
             PerformLayout();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private Button Ajouter;
@@ -144,5 +162,6 @@
         private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
         private BindingSource actorBindingSource;
         private TextBox textBox2;
+        private Button Valider;
     }
 }
