@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fenetrePrincipale));
             GestionActors = new Button();
             GestionFilms = new Button();
             GestionDirectors = new Button();
@@ -35,7 +36,7 @@
             // 
             // GestionActors
             // 
-            GestionActors.Location = new Point(204, 65);
+            GestionActors.Location = new Point(115, 271);
             GestionActors.Name = "GestionActors";
             GestionActors.Size = new Size(122, 23);
             GestionActors.TabIndex = 0;
@@ -45,7 +46,7 @@
             // 
             // GestionFilms
             // 
-            GestionFilms.Location = new Point(205, 129);
+            GestionFilms.Location = new Point(115, 342);
             GestionFilms.Name = "GestionFilms";
             GestionFilms.Size = new Size(121, 23);
             GestionFilms.TabIndex = 1;
@@ -55,7 +56,7 @@
             // 
             // GestionDirectors
             // 
-            GestionDirectors.Location = new Point(205, 204);
+            GestionDirectors.Location = new Point(115, 412);
             GestionDirectors.Name = "GestionDirectors";
             GestionDirectors.Size = new Size(121, 23);
             GestionDirectors.TabIndex = 2;
@@ -67,7 +68,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(503, 335);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(349, 608);
             Controls.Add(GestionDirectors);
             Controls.Add(GestionFilms);
             Controls.Add(GestionActors);
