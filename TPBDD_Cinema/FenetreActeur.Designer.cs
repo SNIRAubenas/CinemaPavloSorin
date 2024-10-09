@@ -33,10 +33,11 @@
             Modifier = new Button();
             Supprimer = new Button();
             dataGridView1 = new DataGridView();
-            actorBindingSource = new BindingSource(components);
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             filmactorsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            actorBindingSource = new BindingSource(components);
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
@@ -82,10 +83,6 @@
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // actorBindingSource
-            // 
-            actorBindingSource.DataSource = typeof(Models.Actor);
-            // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -104,11 +101,24 @@
             filmactorsDataGridViewTextBoxColumn.HeaderText = "Filmactors";
             filmactorsDataGridViewTextBoxColumn.Name = "filmactorsDataGridViewTextBoxColumn";
             // 
+            // actorBindingSource
+            // 
+            actorBindingSource.DataSource = typeof(Models.Actor);
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(202, 66);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 23);
+            textBox2.TabIndex = 5;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
             // FenetreActeur
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox2);
             Controls.Add(dataGridView1);
             Controls.Add(Supprimer);
             Controls.Add(Modifier);
@@ -120,6 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -132,5 +143,6 @@
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
         private BindingSource actorBindingSource;
+        private TextBox textBox2;
     }
 }
