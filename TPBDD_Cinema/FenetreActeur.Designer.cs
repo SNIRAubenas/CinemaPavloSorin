@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Ajouter = new Button();
+            ajouterButton = new Button();
             Modifier = new Button();
             Supprimer = new Button();
             tableActeurs = new DataGridView();
@@ -40,20 +40,22 @@
             textBoxNom = new TextBox();
             labelNom = new Label();
             okModifier = new Button();
-            textBox2 = new TextBox();
+            ajouterTextBox = new TextBox();
+            ajouterLabel = new Label();
+            ajouterActeurButton = new Button();
             ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // Ajouter
+            // ajouterButton
             // 
-            Ajouter.Location = new Point(54, 269);
-            Ajouter.Name = "Ajouter";
-            Ajouter.Size = new Size(75, 23);
-            Ajouter.TabIndex = 0;
-            Ajouter.Text = "Ajouter";
-            Ajouter.UseVisualStyleBackColor = true;
-            Ajouter.Click += button1_Click;
+            ajouterButton.Location = new Point(54, 269);
+            ajouterButton.Name = "ajouterButton";
+            ajouterButton.Size = new Size(75, 23);
+            ajouterButton.TabIndex = 0;
+            ajouterButton.Text = "Ajouter";
+            ajouterButton.UseVisualStyleBackColor = true;
+            ajouterButton.Click += ajouterButton_Click;
             // 
             // Modifier
             // 
@@ -85,8 +87,9 @@
             tableActeurs.Name = "tableActeurs";
             tableActeurs.ReadOnly = true;
             tableActeurs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tableActeurs.Size = new Size(344, 228);
+            tableActeurs.Size = new Size(362, 228);
             tableActeurs.TabIndex = 3;
+            tableActeurs.CellClick += tableActeurs_CellClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -98,6 +101,7 @@
             // 
             // nameDataGridViewTextBoxColumn
             // 
+            nameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             nameDataGridViewTextBoxColumn.HeaderText = "Name";
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
@@ -109,6 +113,7 @@
             filmactorsDataGridViewTextBoxColumn.HeaderText = "Filmactors";
             filmactorsDataGridViewTextBoxColumn.Name = "filmactorsDataGridViewTextBoxColumn";
             filmactorsDataGridViewTextBoxColumn.ReadOnly = true;
+            filmactorsDataGridViewTextBoxColumn.Visible = false;
             // 
             // actorBindingSource
             // 
@@ -116,7 +121,7 @@
             // 
             // textBoxNom
             // 
-            textBoxNom.Location = new Point(234, 341);
+            textBoxNom.Location = new Point(234, 336);
             textBoxNom.Name = "textBoxNom";
             textBoxNom.Size = new Size(194, 23);
             textBoxNom.TabIndex = 4;
@@ -137,31 +142,52 @@
             okModifier.Name = "okModifier";
             okModifier.Size = new Size(75, 23);
             okModifier.TabIndex = 6;
-            okModifier.Text = "OK";
+            okModifier.Text = "MODIFIER";
             okModifier.UseVisualStyleBackColor = true;
             okModifier.Click += okModifier_Click;
             // 
-            // textBox2
+            // ajouterTextBox
             // 
-            textBox2.Location = new Point(473, 344);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(201, 23);
-            textBox2.TabIndex = 5;
-            textBox2.TextChanged += textBox2_TextChanged;
+            ajouterTextBox.Location = new Point(234, 336);
+            ajouterTextBox.Name = "ajouterTextBox";
+            ajouterTextBox.Size = new Size(201, 23);
+            ajouterTextBox.TabIndex = 5;
+            ajouterTextBox.TextChanged += ajouterTextBox_TextChanged;
+            // 
+            // ajouterLabel
+            // 
+            ajouterLabel.AutoSize = true;
+            ajouterLabel.Location = new Point(18, 344);
+            ajouterLabel.Name = "ajouterLabel";
+            ajouterLabel.Size = new Size(210, 15);
+            ajouterLabel.TabIndex = 7;
+            ajouterLabel.Text = "Entrez le nom de votre nouveau acteur";
+            // 
+            // ajouterActeurButton
+            // 
+            ajouterActeurButton.Location = new Point(186, 391);
+            ajouterActeurButton.Name = "ajouterActeurButton";
+            ajouterActeurButton.Size = new Size(75, 23);
+            ajouterActeurButton.TabIndex = 8;
+            ajouterActeurButton.Text = "AJOUTER";
+            ajouterActeurButton.UseVisualStyleBackColor = true;
+            ajouterActeurButton.Click += ajouterActeurButton_Click;
             // 
             // FenetreActeur
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(ajouterActeurButton);
+            Controls.Add(ajouterLabel);
             Controls.Add(okModifier);
             Controls.Add(labelNom);
             Controls.Add(textBoxNom);
             Controls.Add(tableActeurs);
-            Controls.Add(textBox2);
+            Controls.Add(ajouterTextBox);
             Controls.Add(Supprimer);
             Controls.Add(Modifier);
-            Controls.Add(Ajouter);
+            Controls.Add(ajouterButton);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FenetreActeur";
             Text = "FenetreActeur";
@@ -174,17 +200,19 @@
 
         #endregion
 
-        private Button Ajouter;
+        private Button ajouterButton;
         private Button Modifier;
         private Button Supprimer;
         private DataGridView tableActeurs;
         private BindingSource actorBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
-        private TextBox textBox2;
+        private TextBox ajouterTextBox;
         private TextBox textBoxNom;
         private Label labelNom;
         private Button okModifier;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
+        private Label ajouterLabel;
+        private Button ajouterActeurButton;
     }
 }

@@ -21,12 +21,15 @@ namespace TPBDD_Cinema
             InitializeComponent();
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Modifier.Enabled = false;
-            this.Ajouter.Enabled = true;
-            this.Supprimer.Enabled = false;
+            this.Modifier.Enabled = true;
+            this.ajouterButton.Enabled = true;
+            this.Supprimer.Enabled = true;
             this.textBoxNom.Visible = false;
             this.labelNom.Visible = false;
             this.okModifier.Visible = false;
+            this.ajouterTextBox.Visible = false;
+            this.ajouterLabel.Visible = false;
+            this.ajouterActeurButton.Visible = false;
         }
 
 
@@ -42,42 +45,14 @@ namespace TPBDD_Cinema
             {
                 MessageBox.Show($"Erreur de chargement de la base de donnée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            textBox2.Text = "Entrer ici le nom de l'acteur";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ajouterButton_Click(object sender, EventArgs e)
         {
-            string nom = textBox2.Text;
-            if (string.IsNullOrEmpty(nom) || nom == "Entrer ici le nom de l'acteur")
-            {
-                MessageBox.Show("Veuillez entrer un nom d'acteur.");
-                return;
-            }
-
-
-            using (var context = new DirectorfilmactorContext())
-            {
-                var acteur = new Actor
-                {
-                    Name = nom,
-                };
-
-
-                context.Actors.Add(acteur);
-
-                try
-                {
-                    context.SaveChanges();
-                    MessageBox.Show("Acteur ajouté avec succès.");
-
-                    textBox2.Clear();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de l'ajout de l'acteur : " + ex.Message);
-                }
-            }
+            this.ajouterLabel.Visible = true;
+            this.ajouterTextBox.Visible = true;
+            this.ajouterActeurButton.Visible = true;
+            this.ajouterButton.Enabled = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -98,6 +73,7 @@ namespace TPBDD_Cinema
             this.labelNom.Visible = true;
             this.okModifier.Visible = true;
             this.okModifier.Enabled = false;
+            this.Modifier.Enabled = false;
         }
 
         private void okModifier_Click(object sender, EventArgs e)
@@ -111,6 +87,13 @@ namespace TPBDD_Cinema
                 dbContext.Actors.Load();
                 tableActeurs.SelectedRows[0].Selected = false;
             }
+            this.Modifier.Enabled = false;
+            this.Supprimer.Enabled = false;
+            this.textBoxNom.Visible = false;
+            this.textBoxNom.Text = "";
+            this.labelNom.Visible = false;
+            this.okModifier.Visible = false;
+
         }
 
         private void textBoxNom_TextChanged(object sender, EventArgs e)
@@ -118,15 +101,6 @@ namespace TPBDD_Cinema
             if (this.textBoxNom.Text.Length > 0)
             {
                 this.okModifier.Enabled = true;
-            }
-        }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            string textesaisie = textBox2.Text;
-            if (string.IsNullOrEmpty(textesaisie))
-            {
-                MessageBox.Show("Vous avez saisi" + textesaisie);
-
 
             }
         }
@@ -135,6 +109,33 @@ namespace TPBDD_Cinema
         {
             this.Modifier.Enabled = true;
             this.Supprimer.Enabled = true;
+        }
+
+        private void ajouterActeurButton_Click(object sender, EventArgs e)
+        {
+            string nom = ajouterTextBox.Text;
+            Actor actor = new Actor();
+            actor.Name = nom;
+            dbContext.Actors.Add(actor);
+            dbContext.SaveChanges();
+            dbContext.Actors.Load();
+            if (tableActeurs.SelectedRows.Count > 0)
+            {
+                tableActeurs.SelectedRows[0].Selected = false;
+            }
+            this.ajouterLabel.Visible = false;
+            this.ajouterTextBox.Visible = false;
+            this.ajouterTextBox.Text = "";
+            this.ajouterActeurButton.Visible = false;
+            this.ajouterButton.Enabled = true;
+        }
+
+        private void ajouterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ajouterTextBox.Text.Length > 0)
+            {
+                this.ajouterActeurButton.Enabled = true;
+            }
         }
     }
 }
