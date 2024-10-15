@@ -117,6 +117,7 @@
             AjouterFilm.TabIndex = 1;
             AjouterFilm.Text = "Ajouter";
             AjouterFilm.UseVisualStyleBackColor = true;
+            AjouterFilm.Click += AjouterFilm_Click;
             // 
             // ModifierFilm
             // 
@@ -126,6 +127,7 @@
             ModifierFilm.TabIndex = 2;
             ModifierFilm.Text = "Modifier";
             ModifierFilm.UseVisualStyleBackColor = true;
+            ModifierFilm.Click += ModifierFilm_Click;
             // 
             // button3
             // 
@@ -135,6 +137,7 @@
             button3.TabIndex = 3;
             button3.Text = "Supprimer";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // FenetreFilms
             // 

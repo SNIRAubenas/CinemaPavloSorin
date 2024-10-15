@@ -18,5 +18,20 @@ namespace TPBDD_Cinema
             this.MaximizeBox = false;
             this.MinimizeBox = false;
         }
+
+        private void AjouterFilm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ModifierFilm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
