@@ -134,6 +134,10 @@ namespace TPBDD_Cinema
                 this.okModifier.Enabled = true;
 
             }
+            else
+            {
+                this.okModifier.Enabled = false;
+            }
         }
 
         private void tableActeurs_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -166,6 +170,10 @@ namespace TPBDD_Cinema
             if (ajouterTextBox.Text.Length > 0)
             {
                 this.ajouterActeurButton.Enabled = true;
+            }
+            else
+            {
+                this.ajouterActeurButton.Enabled = false;
             }
         }
     }

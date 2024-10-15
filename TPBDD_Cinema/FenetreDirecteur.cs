@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPBDD_Cinema.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TPBDD_Cinema
 {
@@ -21,56 +21,94 @@ namespace TPBDD_Cinema
             InitializeComponent();
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            dbContext = new DirectorfilmactorContext(); 
+            this.labelDirecteur.Visible = false;
+            this.textBoxDirecteur.Visible = false;
+            this.ajouterButtonDirecteur.Visible = false;
         }
 
         private void FenetreDirecteur_Load(object sender, EventArgs e)
         {
-            ChargerElementsDansLalistWiew(); 
-        }
-
-        private void ChargerElementsDansLalistWiew()
-        {
-           
-            tableDirecteurs.Items.Clear();
-            var films = dbContext.Films.ToList();
-
-            foreach (var film in films)
+            dbContext = new DirectorfilmactorContext();
+            if (dbContext.Database.CanConnect())
             {
-                ListViewItem item = new ListViewItem(film.Nom);
-                item.Tag = film; 
-                listView1.Items.Add(item);
+                dbContext.Directors.Load();
+                directorBindingSource.DataSource = dbContext.Directors.Local.ToBindingList();
+            }
+            else
+            {
+                MessageBox.Show($"Erreur de chargement de la base de donnée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void Supprimer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Ajouter_Click(object sender, EventArgs e)
+        {
+            Ajouter.Enabled = true;
+            this.labelDirecteur.Visible = true;
+            this.textBoxDirecteur.Visible = true;
+            this.ajouterButtonDirecteur.Visible = true;
+            this.ajouterButtonDirecteur.Enabled = false;
+        }
+
+        private void ajouterButtonDirecteur_Click(object sender, EventArgs e)
+        {
+            string nom = textBoxDirecteur.Text;
+            Director director = new Director();
+            director.Name = nom;
+            dbContext.Directors.Add(director);
+            dbContext.SaveChanges();
+            dbContext.Directors.Load();
+
+            if (tableDirecteurs.SelectedRows.Count > 0)
+            {
+                tableDirecteurs.SelectedRows[0].Selected = false;
+            }
+
+            this.labelDirecteur.Visible = false;
+            this.textBoxDirecteur.Visible = false;
+            this.textBoxDirecteur.Text = "";
+            this.ajouterButtonDirecteur.Visible = false;
+            this.Ajouter.Enabled = true;
+        }
+
+        private void textBoxDirecteur_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxDirecteur.Text.Length > 0)
+            {
+                this.ajouterButtonDirecteur.Enabled = true;
+            }
+            else
+            {
+                this.ajouterButtonDirecteur.Enabled = false;
+            }
+        }
+
+        private void Modifier_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonModifDir_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = listView1.SelectedItems[0];
                 var film = (Film)selectedItem.Tag;
 
-                DialogResult result = MessageBox.Show($"Êtes-vous sûr de vouloir supprimer le film '{film.Nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        }
 
-                if (result == DialogResult.Yes)
-                {
-                    try
-                    {
-                        dbContext.Films.Remove(film);
-                        dbContext.SaveChanges();
-
-                        listView1.Items.Remove(selectedItem);
-                        MessageBox.Show("Film supprimé avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erreur lors de la suppression : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
+        private void textBoxModifDir_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxModifDir.Text.Length > 0)
             {
-                MessageBox.Show("Veuillez sélectionner un film à supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.buttonModifDir.Enabled = true;
+            } else
+            {
+                this.buttonModifDir.Enabled = false;
             }
         }
     }
