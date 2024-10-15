@@ -1,7 +1,11 @@
+using TPBDD_Cinema.Models;
+
 namespace TPBDD_Cinema
 {
     public partial class fenetrePrincipale : Form
     {
+        DirectorfilmactorContext dbContext;
+
         public fenetrePrincipale()
         {
             InitializeComponent();
