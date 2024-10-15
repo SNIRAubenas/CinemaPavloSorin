@@ -32,12 +32,12 @@
             Ajouter = new Button();
             Modifier = new Button();
             Supprimer = new Button();
-            dataGridView1 = new DataGridView();
-            directorBindingSource = new BindingSource(components);
+            tableDirecteurs = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             filmdirectorsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            directorBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)tableDirecteurs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)directorBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -69,20 +69,16 @@
             Supprimer.UseVisualStyleBackColor = true;
             Supprimer.Click += Supprimer_Click;
             // 
-            // dataGridView1
+            // tableDirecteurs
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, filmdirectorsDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = directorBindingSource;
-            dataGridView1.Location = new Point(49, 80);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(347, 206);
-            dataGridView1.TabIndex = 3;
-            // 
-            // directorBindingSource
-            // 
-            directorBindingSource.DataSource = typeof(Models.Director);
+            tableDirecteurs.AutoGenerateColumns = false;
+            tableDirecteurs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tableDirecteurs.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, filmdirectorsDataGridViewTextBoxColumn });
+            tableDirecteurs.DataSource = directorBindingSource;
+            tableDirecteurs.Location = new Point(49, 80);
+            tableDirecteurs.Name = "tableDirecteurs";
+            tableDirecteurs.Size = new Size(347, 206);
+            tableDirecteurs.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -102,12 +98,16 @@
             filmdirectorsDataGridViewTextBoxColumn.HeaderText = "Filmdirectors";
             filmdirectorsDataGridViewTextBoxColumn.Name = "filmdirectorsDataGridViewTextBoxColumn";
             // 
+            // directorBindingSource
+            // 
+            directorBindingSource.DataSource = typeof(Models.Director);
+            // 
             // FenetreDirecteur
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(663, 404);
-            Controls.Add(dataGridView1);
+            Controls.Add(tableDirecteurs);
             Controls.Add(Supprimer);
             Controls.Add(Modifier);
             Controls.Add(Ajouter);
@@ -115,7 +115,7 @@
             Name = "FenetreDirecteur";
             Text = "FenetreDirecteur";
             Load += FenetreDirecteur_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tableDirecteurs).EndInit();
             ((System.ComponentModel.ISupportInitialize)directorBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -125,7 +125,7 @@
         private Button Ajouter;
         private Button Modifier;
         private Button Supprimer;
-        private DataGridView dataGridView1;
+        private DataGridView tableDirecteurs;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn filmdirectorsDataGridViewTextBoxColumn;
