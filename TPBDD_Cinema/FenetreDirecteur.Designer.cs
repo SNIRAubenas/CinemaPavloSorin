@@ -85,15 +85,18 @@
             tableDirecteurs.DataSource = directorBindingSource;
             tableDirecteurs.Location = new Point(49, 44);
             tableDirecteurs.Name = "tableDirecteurs";
+            tableDirecteurs.ReadOnly = true;
             tableDirecteurs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tableDirecteurs.Size = new Size(338, 206);
             tableDirecteurs.TabIndex = 3;
+            tableDirecteurs.CellClick += tableDirecteurs_CellClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             idDataGridViewTextBoxColumn.HeaderText = "Id";
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -101,12 +104,14 @@
             nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             nameDataGridViewTextBoxColumn.HeaderText = "Name";
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // filmdirectorsDataGridViewTextBoxColumn
             // 
             filmdirectorsDataGridViewTextBoxColumn.DataPropertyName = "Filmdirectors";
             filmdirectorsDataGridViewTextBoxColumn.HeaderText = "Filmdirectors";
             filmdirectorsDataGridViewTextBoxColumn.Name = "filmdirectorsDataGridViewTextBoxColumn";
+            filmdirectorsDataGridViewTextBoxColumn.ReadOnly = true;
             filmdirectorsDataGridViewTextBoxColumn.Visible = false;
             // 
             // directorBindingSource
