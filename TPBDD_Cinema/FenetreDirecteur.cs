@@ -42,8 +42,41 @@ namespace TPBDD_Cinema
 
         private void Supprimer_Click(object sender, EventArgs e)
         {
+            if (tableDirecteurs.SelectedRows.Count > 0)
+            {
 
+                DataGridViewRow selectedRow = tableDirecteurs.SelectedRows[0];
+                var director = (Director)selectedRow.DataBoundItem; 
+
+
+                DialogResult result = MessageBox.Show($"Êtes-vous sûr de vouloir supprimer le réalisateur '{director.Name}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+
+                        dbContext.Directors.Remove(director);
+                        dbContext.SaveChanges();
+
+
+                        dbContext.Directors.Load();
+                        directorBindingSource.DataSource = dbContext.Directors.Local.ToBindingList();
+
+                        MessageBox.Show("Réalisateur supprimé avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la suppression : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un réalisateur à supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void Ajouter_Click(object sender, EventArgs e)
         {
@@ -94,10 +127,8 @@ namespace TPBDD_Cinema
 
         private void buttonModifDir_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                ListViewItem selectedItem = listView1.SelectedItems[0];
-                var film = (Film)selectedItem.Tag;
+
+            
 
         }
 
