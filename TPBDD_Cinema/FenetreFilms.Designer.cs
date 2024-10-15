@@ -61,6 +61,7 @@
             label5 = new Label();
             filmBindingSource1 = new BindingSource(components);
             filmBindingSource2 = new BindingSource(components);
+            panelAjouterFilm = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
@@ -69,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource2).BeginInit();
+            panelAjouterFilm.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -80,7 +82,8 @@
             dataGridView1.Location = new Point(51, 37);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(643, 386);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(573, 386);
             dataGridView1.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -110,6 +113,7 @@
             lengthDataGridViewTextBoxColumn.HeaderText = "Length";
             lengthDataGridViewTextBoxColumn.Name = "lengthDataGridViewTextBoxColumn";
             lengthDataGridViewTextBoxColumn.ReadOnly = true;
+            lengthDataGridViewTextBoxColumn.Width = 130;
             // 
             // summaryDataGridViewTextBoxColumn
             // 
@@ -124,6 +128,7 @@
             posterDataGridViewImageColumn.HeaderText = "Poster";
             posterDataGridViewImageColumn.Name = "posterDataGridViewImageColumn";
             posterDataGridViewImageColumn.ReadOnly = true;
+            posterDataGridViewImageColumn.Visible = false;
             // 
             // filmactorsDataGridViewTextBoxColumn
             // 
@@ -175,7 +180,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(754, 139);
+            label1.Location = new Point(31, 27);
             label1.Name = "label1";
             label1.Size = new Size(75, 15);
             label1.TabIndex = 4;
@@ -183,14 +188,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(852, 139);
+            textBox1.Location = new Point(127, 27);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(165, 23);
             textBox1.TabIndex = 5;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(954, 185);
+            textBox2.Location = new Point(229, 76);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(63, 23);
             textBox2.TabIndex = 6;
@@ -198,7 +203,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(754, 188);
+            label2.Location = new Point(31, 76);
             label2.Name = "label2";
             label2.Size = new Size(154, 15);
             label2.TabIndex = 7;
@@ -207,7 +212,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(754, 233);
+            label3.Location = new Point(31, 144);
             label3.Name = "label3";
             label3.Size = new Size(84, 15);
             label3.TabIndex = 8;
@@ -215,7 +220,7 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(873, 287);
+            richTextBox1.Location = new Point(169, 208);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(320, 133);
             richTextBox1.TabIndex = 10;
@@ -224,7 +229,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(754, 287);
+            label4.Location = new Point(31, 211);
             label4.Name = "label4";
             label4.Size = new Size(113, 15);
             label4.TabIndex = 11;
@@ -232,7 +237,7 @@
             // 
             // insererImage
             // 
-            insererImage.Location = new Point(754, 489);
+            insererImage.Location = new Point(40, 407);
             insererImage.Name = "insererImage";
             insererImage.Size = new Size(104, 23);
             insererImage.TabIndex = 12;
@@ -244,7 +249,7 @@
             // 
             pictureBox.BackColor = SystemColors.AppWorkspace;
             pictureBox.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox.Location = new Point(895, 441);
+            pictureBox.Location = new Point(212, 361);
             pictureBox.Name = "pictureBox";
             pictureBox.Size = new Size(214, 154);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -253,7 +258,7 @@
             // 
             // validerAjouterFilme
             // 
-            validerAjouterFilme.Location = new Point(909, 666);
+            validerAjouterFilme.Location = new Point(229, 596);
             validerAjouterFilme.Name = "validerAjouterFilme";
             validerAjouterFilme.Size = new Size(116, 48);
             validerAjouterFilme.TabIndex = 15;
@@ -262,7 +267,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(959, 231);
+            numericUpDown1.Location = new Point(229, 144);
             numericUpDown1.Maximum = new decimal(new int[] { 3, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(58, 23);
@@ -271,7 +276,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(909, 235);
+            label6.Location = new Point(169, 144);
             label6.Name = "label6";
             label6.Size = new Size(44, 15);
             label6.TabIndex = 17;
@@ -279,7 +284,7 @@
             // 
             // numericUpDown2
             // 
-            numericUpDown2.Location = new Point(1102, 231);
+            numericUpDown2.Location = new Point(381, 144);
             numericUpDown2.Maximum = new decimal(new int[] { 59, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(58, 23);
@@ -287,7 +292,7 @@
             // 
             // numericUpDown3
             // 
-            numericUpDown3.Location = new Point(1252, 231);
+            numericUpDown3.Location = new Point(519, 142);
             numericUpDown3.Maximum = new decimal(new int[] { 59, 0, 0, 0 });
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(61, 23);
@@ -296,7 +301,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(1046, 235);
+            label7.Location = new Point(312, 144);
             label7.Name = "label7";
             label7.Size = new Size(50, 15);
             label7.TabIndex = 20;
@@ -305,7 +310,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(1189, 235);
+            label8.Location = new Point(456, 144);
             label8.Name = "label8";
             label8.Size = new Size(57, 15);
             label8.TabIndex = 21;
@@ -315,7 +320,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 8F);
-            label5.Location = new Point(954, 598);
+            label5.Location = new Point(275, 518);
             label5.Name = "label5";
             label5.Size = new Size(87, 13);
             label5.TabIndex = 22;
@@ -329,28 +334,36 @@
             // 
             filmBindingSource2.DataSource = typeof(Models.Film);
             // 
+            // panelAjouterFilm
+            // 
+            panelAjouterFilm.Controls.Add(label1);
+            panelAjouterFilm.Controls.Add(label5);
+            panelAjouterFilm.Controls.Add(textBox1);
+            panelAjouterFilm.Controls.Add(validerAjouterFilme);
+            panelAjouterFilm.Controls.Add(numericUpDown3);
+            panelAjouterFilm.Controls.Add(pictureBox);
+            panelAjouterFilm.Controls.Add(label8);
+            panelAjouterFilm.Controls.Add(insererImage);
+            panelAjouterFilm.Controls.Add(label2);
+            panelAjouterFilm.Controls.Add(richTextBox1);
+            panelAjouterFilm.Controls.Add(label4);
+            panelAjouterFilm.Controls.Add(label7);
+            panelAjouterFilm.Controls.Add(numericUpDown2);
+            panelAjouterFilm.Controls.Add(textBox2);
+            panelAjouterFilm.Controls.Add(label3);
+            panelAjouterFilm.Controls.Add(label6);
+            panelAjouterFilm.Controls.Add(numericUpDown1);
+            panelAjouterFilm.Location = new Point(677, 89);
+            panelAjouterFilm.Name = "panelAjouterFilm";
+            panelAjouterFilm.Size = new Size(591, 660);
+            panelAjouterFilm.TabIndex = 23;
+            // 
             // FenetreFilms
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1341, 772);
-            Controls.Add(label5);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(numericUpDown3);
-            Controls.Add(numericUpDown2);
-            Controls.Add(label6);
-            Controls.Add(numericUpDown1);
-            Controls.Add(validerAjouterFilme);
-            Controls.Add(pictureBox);
-            Controls.Add(insererImage);
-            Controls.Add(label4);
-            Controls.Add(richTextBox1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(panelAjouterFilm);
             Controls.Add(button3);
             Controls.Add(ModifierFilm);
             Controls.Add(AjouterFilm);
@@ -358,6 +371,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FenetreFilms";
             Text = "FenetreFilms";
+            Load += FenetreFilms_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
@@ -366,8 +380,9 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource2).EndInit();
+            panelAjouterFilm.ResumeLayout(false);
+            panelAjouterFilm.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -377,14 +392,6 @@
         private Button ModifierFilm;
         private Button button3;
         private BindingSource filmBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn yearDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lengthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn summaryDataGridViewTextBoxColumn;
-        private DataGridViewImageColumn posterDataGridViewImageColumn;
-        private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn filmdirectorsDataGridViewTextBoxColumn;
         private Label label1;
         private TextBox textBox1;
         private TextBox textBox2;
@@ -404,5 +411,14 @@
         private Label label5;
         private BindingSource filmBindingSource1;
         private BindingSource filmBindingSource2;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn yearDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lengthDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn summaryDataGridViewTextBoxColumn;
+        private DataGridViewImageColumn posterDataGridViewImageColumn;
+        private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn filmdirectorsDataGridViewTextBoxColumn;
+        private Panel panelAjouterFilm;
     }
 }
