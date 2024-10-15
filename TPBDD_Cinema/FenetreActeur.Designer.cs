@@ -1,4 +1,5 @@
-﻿namespace TPBDD_Cinema
+﻿
+namespace TPBDD_Cinema
 {
     partial class FenetreActeur
     {
@@ -44,6 +45,8 @@
             ajouterLabel = new Label();
             ajouterActeurButton = new Button();
             ((System.ComponentModel.ISupportInitialize)tableActeurs).BeginInit();
+            
+            
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -196,6 +199,11 @@
             ((System.ComponentModel.ISupportInitialize)actorBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
