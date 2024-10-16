@@ -177,6 +177,7 @@
             button3.TabIndex = 3;
             button3.Text = "Supprimer";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_1;
             // 
             // label1
             // 

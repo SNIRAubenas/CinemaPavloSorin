@@ -17,7 +17,7 @@ namespace TPBDD_Cinema
             this.MinimizeBox = false;
             dbContext = new DirectorfilmactorContext();
 
-            // Au début, le panel est caché
+
             panelAjouterFilm.Visible = false;
         }
 
@@ -35,14 +35,13 @@ namespace TPBDD_Cinema
             }
         }
 
-        // Bouton Ajouter pour rendre visible/invisible le panel d'ajout de film
         private void AjouterFilm_Click(object sender, EventArgs e)
         {
-            // Inverse l'état de visibilité du panel à chaque clic
+
             panelAjouterFilm.Visible = !panelAjouterFilm.Visible;
         }
 
-        // Bouton OK pour ajouter le film dans la base de données
+
         private void OkButton_Click(object sender, EventArgs e)
         {
             string titre = textBox1.Text;
@@ -79,13 +78,17 @@ namespace TPBDD_Cinema
 
                 MessageBox.Show("Film ajouté avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Réinitialiser les champs et cacher le panel après ajout
+
                 textBox1.Clear();
                 numericUpDown1.Value = 0;
                 numericUpDown2.Value = 0;
                 richTextBox1.Clear();
                 pictureBox.Image = null;
                 panelAjouterFilm.Visible = false;
+
+
+                dbContext.Films.Load();
+                dataGridView1.DataSource = dbContext.Films.Local.ToBindingList();
             }
             catch (Exception ex)
             {
@@ -108,5 +111,51 @@ namespace TPBDD_Cinema
                 }
             }
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0) 
+            {
+                
+                int filmId = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+               
+
+                DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce film ?",
+                                                      "Confirmation", MessageBoxButtons.YesNo,
+                                                      MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        
+                        Film filmASupprimer = dbContext.Films.FirstOrDefault(f => f.Id == filmId);
+
+                        if (filmASupprimer != null)
+                        {
+                            
+                            dbContext.Films.Remove(filmASupprimer);
+                            dbContext.SaveChanges();
+
+                            
+                            dbContext.Films.Load();
+                            dataGridView1.DataSource = dbContext.Films.Local.ToBindingList();
+
+                            MessageBox.Show("Film supprimé avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la suppression du film : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un film à supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
-}
+    }
+
