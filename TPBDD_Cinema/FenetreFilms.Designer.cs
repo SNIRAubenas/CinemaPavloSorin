@@ -80,6 +80,18 @@
             label15 = new Label();
             label16 = new Label();
             hourModifFilm = new NumericUpDown();
+            label17 = new Label();
+            panelFilm = new Panel();
+            descFilm = new RichTextBox();
+            imageFilm = new PictureBox();
+            label25 = new Label();
+            label24 = new Label();
+            timeFilm = new Label();
+            label21 = new Label();
+            yearFilm = new Label();
+            label18 = new Label();
+            titleFilm = new Label();
+            mySqlCommandBuilder1 = new MySqlConnector.MySqlCommandBuilder();
             ((System.ComponentModel.ISupportInitialize)tableFilms).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
@@ -94,10 +106,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)minuteModifFilm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)hourModifFilm).BeginInit();
+            panelFilm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imageFilm).BeginInit();
             SuspendLayout();
             // 
             // tableFilms
             // 
+            tableFilms.AllowUserToAddRows = false;
             tableFilms.AutoGenerateColumns = false;
             tableFilms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableFilms.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, titleDataGridViewTextBoxColumn, yearDataGridViewTextBoxColumn, lengthDataGridViewTextBoxColumn, summaryDataGridViewTextBoxColumn, posterDataGridViewImageColumn, filmactorsDataGridViewTextBoxColumn, filmdirectorsDataGridViewTextBoxColumn });
@@ -108,6 +123,7 @@
             tableFilms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tableFilms.Size = new Size(573, 386);
             tableFilms.TabIndex = 0;
+            tableFilms.CellClick += tableFilms_CellClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -362,6 +378,7 @@
             // 
             // panelAjouterFilm
             // 
+            panelAjouterFilm.BorderStyle = BorderStyle.Fixed3D;
             panelAjouterFilm.Controls.Add(label1);
             panelAjouterFilm.Controls.Add(label5);
             panelAjouterFilm.Controls.Add(textTitreFilmAjouter);
@@ -379,13 +396,14 @@
             panelAjouterFilm.Controls.Add(label3);
             panelAjouterFilm.Controls.Add(label6);
             panelAjouterFilm.Controls.Add(hourAjoutFilm);
-            panelAjouterFilm.Location = new Point(677, 89);
+            panelAjouterFilm.Location = new Point(666, 103);
             panelAjouterFilm.Name = "panelAjouterFilm";
             panelAjouterFilm.Size = new Size(591, 660);
             panelAjouterFilm.TabIndex = 23;
             // 
             // panelModifierFilm
             // 
+            panelModifierFilm.BorderStyle = BorderStyle.Fixed3D;
             panelModifierFilm.Controls.Add(label9);
             panelModifierFilm.Controls.Add(label10);
             panelModifierFilm.Controls.Add(textTitreModifFilm);
@@ -403,7 +421,7 @@
             panelModifierFilm.Controls.Add(label15);
             panelModifierFilm.Controls.Add(label16);
             panelModifierFilm.Controls.Add(hourModifFilm);
-            panelModifierFilm.Location = new Point(80, 37);
+            panelModifierFilm.Location = new Point(682, 87);
             panelModifierFilm.Name = "panelModifierFilm";
             panelModifierFilm.Size = new Size(591, 660);
             panelModifierFilm.TabIndex = 24;
@@ -556,11 +574,127 @@
             hourModifFilm.Size = new Size(58, 23);
             hourModifFilm.TabIndex = 16;
             // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(27, 35);
+            label17.Name = "label17";
+            label17.Size = new Size(33, 15);
+            label17.TabIndex = 25;
+            label17.Text = "Titre:";
+            // 
+            // panelFilm
+            // 
+            panelFilm.BorderStyle = BorderStyle.Fixed3D;
+            panelFilm.Controls.Add(descFilm);
+            panelFilm.Controls.Add(imageFilm);
+            panelFilm.Controls.Add(label25);
+            panelFilm.Controls.Add(label24);
+            panelFilm.Controls.Add(timeFilm);
+            panelFilm.Controls.Add(label21);
+            panelFilm.Controls.Add(yearFilm);
+            panelFilm.Controls.Add(label18);
+            panelFilm.Controls.Add(titleFilm);
+            panelFilm.Controls.Add(label17);
+            panelFilm.Location = new Point(51, 448);
+            panelFilm.Name = "panelFilm";
+            panelFilm.Size = new Size(343, 505);
+            panelFilm.TabIndex = 27;
+            // 
+            // descFilm
+            // 
+            descFilm.Location = new Point(109, 185);
+            descFilm.Name = "descFilm";
+            descFilm.Size = new Size(211, 128);
+            descFilm.TabIndex = 36;
+            descFilm.Text = "";
+            // 
+            // imageFilm
+            // 
+            imageFilm.BackColor = SystemColors.AppWorkspace;
+            imageFilm.BorderStyle = BorderStyle.Fixed3D;
+            imageFilm.Location = new Point(109, 333);
+            imageFilm.Name = "imageFilm";
+            imageFilm.Size = new Size(214, 154);
+            imageFilm.SizeMode = PictureBoxSizeMode.StretchImage;
+            imageFilm.TabIndex = 35;
+            imageFilm.TabStop = false;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(31, 389);
+            label25.Name = "label25";
+            label25.Size = new Size(43, 15);
+            label25.TabIndex = 34;
+            label25.Text = "Poster:";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(27, 194);
+            label24.Name = "label24";
+            label24.Size = new Size(70, 15);
+            label24.TabIndex = 33;
+            label24.Text = "Description:";
+            // 
+            // timeFilm
+            // 
+            timeFilm.AutoSize = true;
+            timeFilm.Location = new Point(91, 142);
+            timeFilm.Name = "timeFilm";
+            timeFilm.Size = new Size(37, 15);
+            timeFilm.TabIndex = 31;
+            timeFilm.Text = "duree";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(27, 142);
+            label21.Name = "label21";
+            label21.Size = new Size(41, 15);
+            label21.TabIndex = 30;
+            label21.Text = "Duree:";
+            // 
+            // yearFilm
+            // 
+            yearFilm.AutoSize = true;
+            yearFilm.Location = new Point(89, 88);
+            yearFilm.Name = "yearFilm";
+            yearFilm.Size = new Size(39, 15);
+            yearFilm.TabIndex = 29;
+            yearFilm.Text = "annee";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(27, 88);
+            label18.Name = "label18";
+            label18.Size = new Size(44, 15);
+            label18.TabIndex = 28;
+            label18.Text = "Annee:";
+            // 
+            // titleFilm
+            // 
+            titleFilm.AutoSize = true;
+            titleFilm.Location = new Point(89, 35);
+            titleFilm.Name = "titleFilm";
+            titleFilm.Size = new Size(28, 15);
+            titleFilm.TabIndex = 27;
+            titleFilm.Text = "titre";
+            // 
+            // mySqlCommandBuilder1
+            // 
+            mySqlCommandBuilder1.DataAdapter = null;
+            mySqlCommandBuilder1.QuotePrefix = "`";
+            mySqlCommandBuilder1.QuoteSuffix = "`";
+            // 
             // FenetreFilms
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1341, 772);
+            ClientSize = new Size(1341, 1061);
+            Controls.Add(panelFilm);
             Controls.Add(panelModifierFilm);
             Controls.Add(panelAjouterFilm);
             Controls.Add(SupprimerFilm);
@@ -587,6 +721,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)minuteModifFilm).EndInit();
             ((System.ComponentModel.ISupportInitialize)hourModifFilm).EndInit();
+            panelFilm.ResumeLayout(false);
+            panelFilm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imageFilm).EndInit();
             ResumeLayout(false);
         }
 
@@ -643,5 +780,17 @@
         private Label label15;
         private Label label16;
         private NumericUpDown hourModifFilm;
+        private Label label17;
+        private Panel panelFilm;
+        private Label titleFilm;
+        private Label label21;
+        private Label yearFilm;
+        private Label label18;
+        private PictureBox imageFilm;
+        private Label label25;
+        private Label label24;
+        private Label timeFilm;
+        private MySqlConnector.MySqlCommandBuilder mySqlCommandBuilder1;
+        private RichTextBox descFilm;
     }
 }

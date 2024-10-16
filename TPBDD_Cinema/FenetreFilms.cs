@@ -20,6 +20,7 @@ namespace TPBDD_Cinema
 
             panelAjouterFilm.Visible = false;
             panelModifierFilm.Visible = false;
+            panelFilm.Visible = false;
         }
 
         private void FenetreFilms_Load(object sender, EventArgs e)
@@ -29,6 +30,7 @@ namespace TPBDD_Cinema
             {
                 dbContext.Films.Load();
                 filmBindingSource.DataSource = dbContext.Films.Local.ToBindingList();
+                decocherLigne();
             }
             else
             {
@@ -39,7 +41,7 @@ namespace TPBDD_Cinema
 
         private void AjouterFilm_Click(object sender, EventArgs e)
         {
-            panelAjouterFilm.Visible = !panelAjouterFilm.Visible;
+            panelAjouterFilm.Visible = true;
             AjouterFilm.Enabled = false;
         }
 
@@ -99,9 +101,6 @@ namespace TPBDD_Cinema
 
                 dbContext.Films.Add(nouveauFilm);
                 dbContext.SaveChanges();
-
-                MessageBox.Show("Film ajouté avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 textTitreFilmAjouter.Clear();
                 textYearFilmAjouter.Clear();
                 hourAjoutFilm.Value = 0;
@@ -111,6 +110,8 @@ namespace TPBDD_Cinema
                 pictureBox.Image = null;
                 panelAjouterFilm.Visible = false;
                 AjouterFilm.Enabled = true;
+                decocherLigne();
+                panelFilm.Visible = false;
             }
             catch (Exception ex)
             {
@@ -124,7 +125,7 @@ namespace TPBDD_Cinema
             {
 
                 int filmId = (int)tableFilms.SelectedRows[0].Cells[0].Value;
-
+                string titleBuffer = tableFilms.SelectedRows[0].Cells[1].Value.ToString();
 
                 DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce film ?",
                                                       "Confirmation", MessageBoxButtons.YesNo,
@@ -146,7 +147,11 @@ namespace TPBDD_Cinema
 
                             dbContext.Films.Load();
                             tableFilms.DataSource = dbContext.Films.Local.ToBindingList();
-
+                            decocherLigne();
+                            if (titleBuffer == titleFilm.Text)
+                            {
+                                panelFilm.Visible = false;
+                            }
                             MessageBox.Show("Film supprimé avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -159,6 +164,35 @@ namespace TPBDD_Cinema
             else
             {
                 MessageBox.Show("Veuillez sélectionner un film à supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void tableFilms_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            panelFilm.Visible = true;
+            titleFilm.Text = tableFilms.SelectedRows[0].Cells[1].Value.ToString();
+            yearFilm.Text = tableFilms.SelectedRows[0].Cells[2].Value.ToString();
+            timeFilm.Text = tableFilms.SelectedRows[0].Cells[3].Value.ToString();
+            descFilm.Text = tableFilms.SelectedRows[0].Cells[4].Value.ToString();
+            byte[] imageBytes = (byte[]) tableFilms.SelectedRows[0].Cells[5].Value;
+            if (imageBytes != null)
+            {
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    imageFilm.Image = Image.FromStream(ms);
+                }
+            }
+            else
+            {
+                imageFilm.Image = null;
+            }
+        }
+
+        public void decocherLigne()
+        {
+            if (tableFilms.SelectedRows.Count > 0)
+            {
+                tableFilms.SelectedRows[0].Selected = false;
             }
         }
     }
