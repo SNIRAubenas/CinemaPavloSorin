@@ -78,7 +78,7 @@ namespace TPBDD_Cinema
             Supprimer.TabIndex = 2;
             Supprimer.Text = "Supprimer";
             Supprimer.UseVisualStyleBackColor = true;
-            Supprimer.Click += button3_Click;
+            Supprimer.Click += Supprimer_Click;
             // 
             // tableActeurs
             // 

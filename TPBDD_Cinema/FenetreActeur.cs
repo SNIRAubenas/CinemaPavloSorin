@@ -48,7 +48,7 @@ namespace TPBDD_Cinema
             this.ajouterButton.Enabled = false;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Supprimer_Click(object sender, EventArgs e)
         {
             if (tableActeurs.SelectedRows.Count > 0)
             {
@@ -72,6 +72,10 @@ namespace TPBDD_Cinema
                            
                             this.Modifier.Enabled = false;
                             this.Supprimer.Enabled = false;
+                            if (tableActeurs.SelectedRows.Count > 0)
+                            {
+                                tableActeurs.SelectedRows[0].Selected = false;
+                            }
                         }
                         catch (Exception ex)
                         {

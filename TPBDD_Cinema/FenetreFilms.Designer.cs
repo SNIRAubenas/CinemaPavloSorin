@@ -43,26 +43,26 @@
             ModifierFilm = new Button();
             button3 = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            textTitreFilmAjouter = new TextBox();
+            textYearFilmAjouter = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            richTextBox1 = new RichTextBox();
+            descAjoutFilm = new RichTextBox();
             label4 = new Label();
             insererImage = new Button();
             pictureBox = new PictureBox();
             validerAjouterFilme = new Button();
-            numericUpDown1 = new NumericUpDown();
+            hourAjoutFilm = new NumericUpDown();
             label6 = new Label();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown3 = new NumericUpDown();
+            minAjoutFilm = new NumericUpDown();
+            secAjoutFilm = new NumericUpDown();
             label7 = new Label();
             label8 = new Label();
             label5 = new Label();
             filmBindingSource1 = new BindingSource(components);
             filmBindingSource2 = new BindingSource(components);
             panelAjouterFilm = new Panel();
-            panel1 = new Panel();
+            panelModifierFilm = new Panel();
             label9 = new Label();
             label10 = new Label();
             textTitreModifFilm = new TextBox();
@@ -83,13 +83,13 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)hourAjoutFilm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)minAjoutFilm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)secAjoutFilm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource2).BeginInit();
             panelAjouterFilm.SuspendLayout();
-            panel1.SuspendLayout();
+            panelModifierFilm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)secondModifFilm).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)minuteModifFilm).BeginInit();
@@ -210,19 +210,19 @@
             label1.TabIndex = 4;
             label1.Text = "Entrez le titre";
             // 
-            // textBox1
+            // textTitreFilmAjouter
             // 
-            textBox1.Location = new Point(127, 27);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(165, 23);
-            textBox1.TabIndex = 5;
+            textTitreFilmAjouter.Location = new Point(127, 27);
+            textTitreFilmAjouter.Name = "textTitreFilmAjouter";
+            textTitreFilmAjouter.Size = new Size(165, 23);
+            textTitreFilmAjouter.TabIndex = 5;
             // 
-            // textBox2
+            // textYearFilmAjouter
             // 
-            textBox2.Location = new Point(229, 76);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(63, 23);
-            textBox2.TabIndex = 6;
+            textYearFilmAjouter.Location = new Point(229, 76);
+            textYearFilmAjouter.Name = "textYearFilmAjouter";
+            textYearFilmAjouter.Size = new Size(63, 23);
+            textYearFilmAjouter.TabIndex = 6;
             // 
             // label2
             // 
@@ -242,13 +242,13 @@
             label3.TabIndex = 8;
             label3.Text = "Entrez la duree";
             // 
-            // richTextBox1
+            // descAjoutFilm
             // 
-            richTextBox1.Location = new Point(169, 208);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(320, 133);
-            richTextBox1.TabIndex = 10;
-            richTextBox1.Text = "";
+            descAjoutFilm.Location = new Point(169, 208);
+            descAjoutFilm.Name = "descAjoutFilm";
+            descAjoutFilm.Size = new Size(320, 133);
+            descAjoutFilm.TabIndex = 10;
+            descAjoutFilm.Text = "";
             // 
             // label4
             // 
@@ -288,14 +288,15 @@
             validerAjouterFilme.TabIndex = 15;
             validerAjouterFilme.Text = "OK";
             validerAjouterFilme.UseVisualStyleBackColor = true;
+            validerAjouterFilme.Click += validerAjouterFilme_Click;
             // 
-            // numericUpDown1
+            // hourAjoutFilm
             // 
-            numericUpDown1.Location = new Point(229, 144);
-            numericUpDown1.Maximum = new decimal(new int[] { 3, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(58, 23);
-            numericUpDown1.TabIndex = 16;
+            hourAjoutFilm.Location = new Point(229, 144);
+            hourAjoutFilm.Maximum = new decimal(new int[] { 3, 0, 0, 0 });
+            hourAjoutFilm.Name = "hourAjoutFilm";
+            hourAjoutFilm.Size = new Size(58, 23);
+            hourAjoutFilm.TabIndex = 16;
             // 
             // label6
             // 
@@ -306,21 +307,21 @@
             label6.TabIndex = 17;
             label6.Text = "Heures";
             // 
-            // numericUpDown2
+            // minAjoutFilm
             // 
-            numericUpDown2.Location = new Point(381, 144);
-            numericUpDown2.Maximum = new decimal(new int[] { 59, 0, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(58, 23);
-            numericUpDown2.TabIndex = 18;
+            minAjoutFilm.Location = new Point(381, 144);
+            minAjoutFilm.Maximum = new decimal(new int[] { 59, 0, 0, 0 });
+            minAjoutFilm.Name = "minAjoutFilm";
+            minAjoutFilm.Size = new Size(58, 23);
+            minAjoutFilm.TabIndex = 18;
             // 
-            // numericUpDown3
+            // secAjoutFilm
             // 
-            numericUpDown3.Location = new Point(519, 142);
-            numericUpDown3.Maximum = new decimal(new int[] { 59, 0, 0, 0 });
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(61, 23);
-            numericUpDown3.TabIndex = 19;
+            secAjoutFilm.Location = new Point(519, 142);
+            secAjoutFilm.Maximum = new decimal(new int[] { 59, 0, 0, 0 });
+            secAjoutFilm.Name = "secAjoutFilm";
+            secAjoutFilm.Size = new Size(61, 23);
+            secAjoutFilm.TabIndex = 19;
             // 
             // label7
             // 
@@ -360,52 +361,51 @@
             // 
             // panelAjouterFilm
             // 
-            panelAjouterFilm.Controls.Add(panel1);
             panelAjouterFilm.Controls.Add(label1);
             panelAjouterFilm.Controls.Add(label5);
-            panelAjouterFilm.Controls.Add(textBox1);
+            panelAjouterFilm.Controls.Add(textTitreFilmAjouter);
             panelAjouterFilm.Controls.Add(validerAjouterFilme);
-            panelAjouterFilm.Controls.Add(numericUpDown3);
+            panelAjouterFilm.Controls.Add(secAjoutFilm);
             panelAjouterFilm.Controls.Add(pictureBox);
             panelAjouterFilm.Controls.Add(label8);
             panelAjouterFilm.Controls.Add(insererImage);
             panelAjouterFilm.Controls.Add(label2);
-            panelAjouterFilm.Controls.Add(richTextBox1);
+            panelAjouterFilm.Controls.Add(descAjoutFilm);
             panelAjouterFilm.Controls.Add(label4);
             panelAjouterFilm.Controls.Add(label7);
-            panelAjouterFilm.Controls.Add(numericUpDown2);
-            panelAjouterFilm.Controls.Add(textBox2);
+            panelAjouterFilm.Controls.Add(minAjoutFilm);
+            panelAjouterFilm.Controls.Add(textYearFilmAjouter);
             panelAjouterFilm.Controls.Add(label3);
             panelAjouterFilm.Controls.Add(label6);
-            panelAjouterFilm.Controls.Add(numericUpDown1);
+            panelAjouterFilm.Controls.Add(hourAjoutFilm);
             panelAjouterFilm.Location = new Point(677, 89);
             panelAjouterFilm.Name = "panelAjouterFilm";
             panelAjouterFilm.Size = new Size(591, 660);
             panelAjouterFilm.TabIndex = 23;
             // 
-            // panel1
+            // panelModifierFilm
             // 
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(textTitreModifFilm);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(secondModifFilm);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(label12);
-            panel1.Controls.Add(richTextBox2);
-            panel1.Controls.Add(label13);
-            panel1.Controls.Add(label14);
-            panel1.Controls.Add(minuteModifFilm);
-            panel1.Controls.Add(textYearModifFilm);
-            panel1.Controls.Add(label15);
-            panel1.Controls.Add(label16);
-            panel1.Controls.Add(hourModifFilm);
-            panel1.Location = new Point(12, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(591, 660);
-            panel1.TabIndex = 24;
+            panelModifierFilm.Controls.Add(label9);
+            panelModifierFilm.Controls.Add(label10);
+            panelModifierFilm.Controls.Add(textTitreModifFilm);
+            panelModifierFilm.Controls.Add(button1);
+            panelModifierFilm.Controls.Add(secondModifFilm);
+            panelModifierFilm.Controls.Add(pictureBox1);
+            panelModifierFilm.Controls.Add(label11);
+            panelModifierFilm.Controls.Add(button2);
+            panelModifierFilm.Controls.Add(label12);
+            panelModifierFilm.Controls.Add(richTextBox2);
+            panelModifierFilm.Controls.Add(label13);
+            panelModifierFilm.Controls.Add(label14);
+            panelModifierFilm.Controls.Add(minuteModifFilm);
+            panelModifierFilm.Controls.Add(textYearModifFilm);
+            panelModifierFilm.Controls.Add(label15);
+            panelModifierFilm.Controls.Add(label16);
+            panelModifierFilm.Controls.Add(hourModifFilm);
+            panelModifierFilm.Location = new Point(70, 73);
+            panelModifierFilm.Name = "panelModifierFilm";
+            panelModifierFilm.Size = new Size(591, 660);
+            panelModifierFilm.TabIndex = 24;
             // 
             // label9
             // 
@@ -560,6 +560,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1341, 772);
+            Controls.Add(panelModifierFilm);
             Controls.Add(panelAjouterFilm);
             Controls.Add(button3);
             Controls.Add(ModifierFilm);
@@ -572,15 +573,15 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)hourAjoutFilm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)minAjoutFilm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)secAjoutFilm).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource2).EndInit();
             panelAjouterFilm.ResumeLayout(false);
             panelAjouterFilm.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelModifierFilm.ResumeLayout(false);
+            panelModifierFilm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)secondModifFilm).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)minuteModifFilm).EndInit();
@@ -596,19 +597,19 @@
         private Button button3;
         private BindingSource filmBindingSource;
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox textTitreFilmAjouter;
+        private TextBox textYearFilmAjouter;
         private Label label2;
         private Label label3;
-        private RichTextBox richTextBox1;
+        private RichTextBox descAjoutFilm;
         private Label label4;
         private Button insererImage;
         private PictureBox pictureBox;
         private Button validerAjouterFilme;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown hourAjoutFilm;
         private Label label6;
-        private NumericUpDown numericUpDown2;
-        private NumericUpDown numericUpDown3;
+        private NumericUpDown minAjoutFilm;
+        private NumericUpDown secAjoutFilm;
         private Label label7;
         private Label label8;
         private Label label5;
@@ -623,7 +624,7 @@
         private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn filmdirectorsDataGridViewTextBoxColumn;
         private Panel panelAjouterFilm;
-        private Panel panel1;
+        private Panel panelModifierFilm;
         private Label label9;
         private Label label10;
         private TextBox textTitreModifFilm;
