@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            dataGridView1 = new DataGridView();
+            tableFilms = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             titleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             yearDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -41,7 +41,7 @@
             filmBindingSource = new BindingSource(components);
             AjouterFilm = new Button();
             ModifierFilm = new Button();
-            button3 = new Button();
+            SupprimerFilm = new Button();
             label1 = new Label();
             textTitreFilmAjouter = new TextBox();
             textYearFilmAjouter = new TextBox();
@@ -80,7 +80,7 @@
             label15 = new Label();
             label16 = new Label();
             hourModifFilm = new NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tableFilms).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)hourAjoutFilm).BeginInit();
@@ -96,18 +96,18 @@
             ((System.ComponentModel.ISupportInitialize)hourModifFilm).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // tableFilms
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, titleDataGridViewTextBoxColumn, yearDataGridViewTextBoxColumn, lengthDataGridViewTextBoxColumn, summaryDataGridViewTextBoxColumn, posterDataGridViewImageColumn, filmactorsDataGridViewTextBoxColumn, filmdirectorsDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = filmBindingSource;
-            dataGridView1.Location = new Point(51, 37);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(573, 386);
-            dataGridView1.TabIndex = 0;
+            tableFilms.AutoGenerateColumns = false;
+            tableFilms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tableFilms.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, titleDataGridViewTextBoxColumn, yearDataGridViewTextBoxColumn, lengthDataGridViewTextBoxColumn, summaryDataGridViewTextBoxColumn, posterDataGridViewImageColumn, filmactorsDataGridViewTextBoxColumn, filmdirectorsDataGridViewTextBoxColumn });
+            tableFilms.DataSource = filmBindingSource;
+            tableFilms.Location = new Point(51, 37);
+            tableFilms.Name = "tableFilms";
+            tableFilms.ReadOnly = true;
+            tableFilms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tableFilms.Size = new Size(573, 386);
+            tableFilms.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -192,15 +192,15 @@
             ModifierFilm.Text = "Modifier";
             ModifierFilm.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // SupprimerFilm
             // 
-            button3.Location = new Point(975, 60);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 3;
-            button3.Text = "Supprimer";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_1;
+            SupprimerFilm.Location = new Point(975, 60);
+            SupprimerFilm.Name = "SupprimerFilm";
+            SupprimerFilm.Size = new Size(75, 23);
+            SupprimerFilm.TabIndex = 3;
+            SupprimerFilm.Text = "Supprimer";
+            SupprimerFilm.UseVisualStyleBackColor = true;
+            SupprimerFilm.Click += SupprimerFilm_Click;
             // 
             // label1
             // 
@@ -403,7 +403,7 @@
             panelModifierFilm.Controls.Add(label15);
             panelModifierFilm.Controls.Add(label16);
             panelModifierFilm.Controls.Add(hourModifFilm);
-            panelModifierFilm.Location = new Point(70, 73);
+            panelModifierFilm.Location = new Point(80, 37);
             panelModifierFilm.Name = "panelModifierFilm";
             panelModifierFilm.Size = new Size(591, 660);
             panelModifierFilm.TabIndex = 24;
@@ -563,15 +563,15 @@
             ClientSize = new Size(1341, 772);
             Controls.Add(panelModifierFilm);
             Controls.Add(panelAjouterFilm);
-            Controls.Add(button3);
+            Controls.Add(SupprimerFilm);
             Controls.Add(ModifierFilm);
             Controls.Add(AjouterFilm);
-            Controls.Add(dataGridView1);
+            Controls.Add(tableFilms);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FenetreFilms";
             Text = "FenetreFilms";
             Load += FenetreFilms_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tableFilms).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)hourAjoutFilm).EndInit();
@@ -592,10 +592,10 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView tableFilms;
         private Button AjouterFilm;
         private Button ModifierFilm;
-        private Button button3;
+        private Button SupprimerFilm;
         private BindingSource filmBindingSource;
         private Label label1;
         private TextBox textTitreFilmAjouter;

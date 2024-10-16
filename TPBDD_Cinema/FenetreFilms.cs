@@ -117,32 +117,14 @@ namespace TPBDD_Cinema
                 MessageBox.Show($"Erreur lors de l'ajout du film : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
-}
 
-        private void insererImage_Click(object sender, EventArgs e)
+        private void SupprimerFilm_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            if (tableFilms.SelectedRows.Count > 0)
             {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    pictureBox.Image = Image.FromFile(openFileDialog.FileName);
-                }
-                else
-                {
-                    MessageBox.Show("Aucune image sélectionnée.");
-                }
-            }
-        }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0) 
-            {
-                
-                int filmId = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
-               
+                int filmId = (int)tableFilms.SelectedRows[0].Cells[0].Value;
+
 
                 DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce film ?",
                                                       "Confirmation", MessageBoxButtons.YesNo,
@@ -152,18 +134,18 @@ namespace TPBDD_Cinema
                 {
                     try
                     {
-                        
+
                         Film filmASupprimer = dbContext.Films.FirstOrDefault(f => f.Id == filmId);
 
                         if (filmASupprimer != null)
                         {
-                            
+
                             dbContext.Films.Remove(filmASupprimer);
                             dbContext.SaveChanges();
 
-                            
+
                             dbContext.Films.Load();
-                            dataGridView1.DataSource = dbContext.Films.Local.ToBindingList();
+                            tableFilms.DataSource = dbContext.Films.Local.ToBindingList();
 
                             MessageBox.Show("Film supprimé avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -179,7 +161,5 @@ namespace TPBDD_Cinema
                 MessageBox.Show("Veuillez sélectionner un film à supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
     }
-    }
-
+}
