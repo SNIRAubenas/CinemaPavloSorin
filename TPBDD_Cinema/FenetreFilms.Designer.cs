@@ -80,7 +80,8 @@
             dataGridView1.Location = new Point(51, 37);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(643, 386);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(543, 386);
             dataGridView1.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -124,6 +125,7 @@
             posterDataGridViewImageColumn.HeaderText = "Poster";
             posterDataGridViewImageColumn.Name = "posterDataGridViewImageColumn";
             posterDataGridViewImageColumn.ReadOnly = true;
+            posterDataGridViewImageColumn.Visible = false;
             // 
             // filmactorsDataGridViewTextBoxColumn
             // 
@@ -163,7 +165,6 @@
             ModifierFilm.TabIndex = 2;
             ModifierFilm.Text = "Modifier";
             ModifierFilm.UseVisualStyleBackColor = true;
-            ModifierFilm.Click += ModifierFilm_Click;
             // 
             // button3
             // 
@@ -173,7 +174,6 @@
             button3.TabIndex = 3;
             button3.Text = "Supprimer";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
             // 
             // label1
             // 
@@ -361,6 +361,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FenetreFilms";
             Text = "FenetreFilms";
+            Load += FenetreFilms_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
@@ -380,14 +381,6 @@
         private Button ModifierFilm;
         private Button button3;
         private BindingSource filmBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn yearDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lengthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn summaryDataGridViewTextBoxColumn;
-        private DataGridViewImageColumn posterDataGridViewImageColumn;
-        private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn filmdirectorsDataGridViewTextBoxColumn;
         private Label label1;
         private TextBox textBox1;
         private TextBox textBox2;
@@ -407,5 +400,13 @@
         private Label label5;
         private BindingSource filmBindingSource1;
         private BindingSource filmBindingSource2;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn yearDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lengthDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn summaryDataGridViewTextBoxColumn;
+        private DataGridViewImageColumn posterDataGridViewImageColumn;
+        private DataGridViewTextBoxColumn filmactorsDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn filmdirectorsDataGridViewTextBoxColumn;
     }
 }

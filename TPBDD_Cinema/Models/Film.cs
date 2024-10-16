@@ -11,7 +11,7 @@ public partial class Film
 
     public int Year { get; set; }
 
-    public TimeOnly Length { get; set; }
+    public TimeSpan Length { get; set; }
 
     public string Summary { get; set; } = null!;
 
