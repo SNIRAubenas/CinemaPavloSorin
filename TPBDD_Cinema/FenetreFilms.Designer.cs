@@ -181,6 +181,7 @@
             AjouterFilm.TabIndex = 1;
             AjouterFilm.Text = "Ajouter";
             AjouterFilm.UseVisualStyleBackColor = true;
+            AjouterFilm.Click += AjouterFilm_Click;
             // 
             // ModifierFilm
             // 

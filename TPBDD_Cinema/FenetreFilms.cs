@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPBDD_Cinema.Models;
 
@@ -21,6 +15,10 @@ namespace TPBDD_Cinema
             InitializeComponent();
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            dbContext = new DirectorfilmactorContext();
+
+            // Au début, le panel est caché
+            panelAjouterFilm.Visible = false;
         }
 
         private void FenetreFilms_Load(object sender, EventArgs e)
@@ -33,7 +31,65 @@ namespace TPBDD_Cinema
             }
             else
             {
-                MessageBox.Show($"Erreur de chargement de la base de donnée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur de connexion à la base de données", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Bouton Ajouter pour rendre visible/invisible le panel d'ajout de film
+        private void AjouterFilm_Click(object sender, EventArgs e)
+        {
+            // Inverse l'état de visibilité du panel à chaque clic
+            panelAjouterFilm.Visible = !panelAjouterFilm.Visible;
+        }
+
+        // Bouton OK pour ajouter le film dans la base de données
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            string titre = textBox1.Text;
+            int annee = (int)numericUpDown2.Value;
+            TimeSpan longueur = TimeSpan.FromMinutes((int)numericUpDown1.Value);
+            string resume = richTextBox1.Text;
+
+            if (string.IsNullOrWhiteSpace(titre) || pictureBox.Image == null)
+            {
+                MessageBox.Show("Veuillez remplir tous les champs et sélectionner une image.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                byte[] imageBytes;
+                using (var ms = new System.IO.MemoryStream())
+                {
+                    pictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    imageBytes = ms.ToArray();
+                }
+
+                Film nouveauFilm = new Film
+                {
+                    Title = titre,
+                    Year = annee,
+                    Length = longueur,
+                    Summary = resume,
+                    Poster = imageBytes
+                };
+
+                dbContext.Films.Add(nouveauFilm);
+                dbContext.SaveChanges();
+
+                MessageBox.Show("Film ajouté avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Réinitialiser les champs et cacher le panel après ajout
+                textBox1.Clear();
+                numericUpDown1.Value = 0;
+                numericUpDown2.Value = 0;
+                richTextBox1.Clear();
+                pictureBox.Image = null;
+                panelAjouterFilm.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'ajout du film : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -42,11 +98,8 @@ namespace TPBDD_Cinema
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-
-
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
                 }
                 else
@@ -55,7 +108,5 @@ namespace TPBDD_Cinema
                 }
             }
         }
-
-        
     }
 }
