@@ -19,19 +19,23 @@ namespace TPBDD_Cinema
             this.MinimizeBox = false;
         }
 
-        private void AjouterFilm_Click(object sender, EventArgs e)
+        private void insererImage_Click(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
 
-        }
-
-        private void ModifierFilm_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
+                
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    
+                    pictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                }
+                else
+                {
+                    MessageBox.Show("Aucune image sélectionnée.");
+                }
+            }
         }
     }
 }

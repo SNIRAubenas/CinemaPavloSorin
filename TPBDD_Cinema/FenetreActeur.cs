@@ -97,6 +97,8 @@ namespace TPBDD_Cinema
             this.okModifier.Visible = true;
             this.okModifier.Enabled = false;
             this.Modifier.Enabled = false;
+            this.ajouterButton.Enabled = false;
+            this.Supprimer.Enabled = false;
         }
 
         private void okModifier_Click(object sender, EventArgs e)
@@ -118,13 +120,13 @@ namespace TPBDD_Cinema
                     MessageBox.Show("Erreur lors de la modification de l'acteur : " + ex.Message);
                 }
             }
-            this.Modifier.Enabled = false;
-            this.Supprimer.Enabled = false;
+            this.Modifier.Enabled = true;
+            this.Supprimer.Enabled = true;
+            this.ajouterButton.Enabled = true;
             this.textBoxNom.Visible = false;
             this.textBoxNom.Text = "";
             this.labelNom.Visible = false;
             this.okModifier.Visible = false;
-
         }
 
         private void textBoxNom_TextChanged(object sender, EventArgs e)

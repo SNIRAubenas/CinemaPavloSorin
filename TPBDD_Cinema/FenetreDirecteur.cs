@@ -24,6 +24,9 @@ namespace TPBDD_Cinema
             this.labelDirecteur.Visible = false;
             this.textBoxDirecteur.Visible = false;
             this.ajouterButtonDirecteur.Visible = false;
+            this.labelModifDirecteur.Visible = false;
+            this.textBoxModifDir.Visible = false;
+            this.buttonModifDir.Visible = false;
         }
 
         private void FenetreDirecteur_Load(object sender, EventArgs e)
@@ -80,7 +83,9 @@ namespace TPBDD_Cinema
 
         private void Ajouter_Click(object sender, EventArgs e)
         {
-            Ajouter.Enabled = true;
+            this.Ajouter.Enabled = false;
+            this.Modifier.Enabled = false;
+            this.Supprimer.Enabled = false;
             this.labelDirecteur.Visible = true;
             this.textBoxDirecteur.Visible = true;
             this.ajouterButtonDirecteur.Visible = true;
@@ -122,14 +127,41 @@ namespace TPBDD_Cinema
 
         private void Modifier_Click(object sender, EventArgs e)
         {
-
+            this.textBoxModifDir.Visible = true;
+            this.labelModifDirecteur.Visible = true;
+            this.buttonModifDir.Visible = true;
+            this.buttonModifDir.Enabled = false;
+            this.Modifier.Enabled = false;
+            this.Ajouter.Enabled = false;
+            this.Supprimer.Enabled = false;
         }
 
         private void buttonModifDir_Click(object sender, EventArgs e)
         {
+            String nouveauNom = this.textBoxModifDir.Text;
+            Director directeurAModifier = dbContext.Directors.Find(tableDirecteurs.SelectedRows[0].Cells[0].Value);
+            if (directeurAModifier != null)
+            {
+                directeurAModifier.Name = nouveauNom;
+                try
+                {
+                    dbContext.SaveChanges();
+                    MessageBox.Show("Acteur modifié avec succès.");
 
-            
-
+                    tableDirecteurs.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la modification de l'acteur : " + ex.Message);
+                }
+            }
+            this.Ajouter.Enabled = true;
+            this.Modifier.Enabled = true;
+            this.Supprimer.Enabled = true;
+            this.textBoxModifDir.Visible = false;
+            this.textBoxModifDir.Text = "";
+            this.labelModifDirecteur.Visible = false;
+            this.buttonModifDir.Visible = false;
         }
 
         private void textBoxModifDir_TextChanged(object sender, EventArgs e)
@@ -137,10 +169,17 @@ namespace TPBDD_Cinema
             if (textBoxModifDir.Text.Length > 0)
             {
                 this.buttonModifDir.Enabled = true;
-            } else
+            }
+            else
             {
                 this.buttonModifDir.Enabled = false;
             }
+        }
+
+        private void tableDirecteurs_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Modifier.Enabled = true;
+            this.Supprimer.Enabled = true;
         }
     }
 }
