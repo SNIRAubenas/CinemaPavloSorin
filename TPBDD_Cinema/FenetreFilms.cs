@@ -8,7 +8,7 @@ namespace TPBDD_Cinema
 {
     public partial class FenetreFilms : Form
     {
-        private DirectorfilmactorContext dbContext;
+        DirectorfilmactorContext dbContext;
 
         public FenetreFilms()
         {
@@ -18,13 +18,30 @@ namespace TPBDD_Cinema
             dbContext = new DirectorfilmactorContext();
         }
 
+        private void FenetreFilms_Load(object sender, EventArgs e)
+        {
+            dbContext = new DirectorfilmactorContext();
+            if (dbContext.Database.CanConnect())
+            {
+                dbContext.Films.Load();
+                filmBindingSource.DataSource = dbContext.Films.Local.ToBindingList();
+            }
+            else
+            {
+                MessageBox.Show($"Erreur de chargement de la base de donnée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void insererImage_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
                 }
                 else
@@ -90,5 +107,7 @@ namespace TPBDD_Cinema
             dbContext = new DirectorfilmactorContext();
             
         }
+
+        
     }
 }
